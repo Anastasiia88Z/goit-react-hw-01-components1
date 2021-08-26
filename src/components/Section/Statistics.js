@@ -1,28 +1,44 @@
-const Statistics = ({ title, stats }) => {
-  return (
-    <section class="statistics">
-      <h2 class="title">Upload stats</h2>
+import PropTypes from 'prop-types';
 
-      <ul class="stat-list">
-        <li class="item">
-          <span class="label">.docx</span>
-          <span class="percentage">4%</span>
+const colorPicker = () => {
+  const red = Math.round(Math.random() * 255);
+  const green = Math.round(Math.random() * 255);
+  const blue = Math.round(Math.random() * 255);
+  const backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+
+  return backgroundColor;
+};
+
+const Statistics = ({ title, stats }) => (
+  <section className="statistics">
+    {title && <h2 className="title">{title}</h2>}
+
+    <ul className="stat-list">
+      {stats.map(({ id, label, percentage }) => (
+        <li
+          key={id}
+          className="item"
+          style={{ backgroundColor: colorPicker() }}
+        >
+          <span className="label">{label}</span>
+          <span className="percentage">{percentage}%</span>
         </li>
-        <li class="item">
-          <span class="label">.mp3</span>
-          <span class="percentage">14%</span>
-        </li>
-        <li class="item">
-          <span class="label">.pdf</span>
-          <span class="percentage">41%</span>
-        </li>
-        <li class="item">
-          <span class="label">.mp4</span>
-          <span class="percentage">12%</span>
-        </li>
-      </ul>
-    </section>
-  );
+      ))}
+    </ul>
+  </section>
+);
+
+Statistics.defaultProps = {
+  title: '',
+};
+
+Statistics.propTypes = {
+  title: PropTypes.string.isRequired,
+  stats: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    percentage: PropTypes.number.isRequired,
+  }),
 };
 
 export default Statistics;
