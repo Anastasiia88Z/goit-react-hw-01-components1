@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 
+import s from './Statistics.module.css';
+
 const colorPicker = () => {
   const red = Math.round(Math.random() * 255);
   const green = Math.round(Math.random() * 255);
