@@ -12,18 +12,18 @@ const colorPicker = () => {
 };
 
 const Statistics = ({ title, stats }) => (
-  <section className="statistics">
-    {title && <h2 className="title">{title}</h2>}
+  <section className={s.statistics}>
+    {title && <h2 className={s.title}>{title}</h2>}
 
-    <ul className="stat-list">
+    <ul className={s.statList}>
       {stats.map(({ id, label, percentage }) => (
         <li
           key={id}
-          className="item"
+          className={s.item}
           style={{ backgroundColor: colorPicker() }}
         >
-          <span className="label">{label}</span>
-          <span className="percentage">{percentage}%</span>
+          <span className={s.label}>{label}</span>
+          <span className={s.percentage}>{percentage}%</span>
         </li>
       ))}
     </ul>
